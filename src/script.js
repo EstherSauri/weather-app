@@ -21,7 +21,9 @@ let dayTime = document.querySelector("#dayTime");
 dayTime.innerHTML = `${currentDay} | ${currentHour}:${currentMinutes}`;
 
 function showTemperature (response) {
-  document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
+
+  celsius = Math.round(response.data.main.temp)
+  document.querySelector("#temperature").innerHTML = celsius;
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
@@ -48,15 +50,18 @@ form.addEventListener("submit", handleSubmit);
 function changeFahrenheit(event) {
 event.preventDefault();
 let temperatureElement = document.querySelector("#temperature");
-let temperature = temperatureElement.innerHTML;
-let fahrenheitTemperature = Math.round((temperature * 9) / 5 + 32);
+celsiusLink.classList.remove("active");
+fahrenheitLink.classList.add("active");
+let fahrenheitTemperature = Math.round((celsius * 9) / 5 + 32);
 temperatureElement.innerHTML = `${fahrenheitTemperature}`;
 }
 
 function changeCelsius(event) {
 event.preventDefault();
 let temperatureElement = document.querySelector("#temperature");
-temperatureElement.innerHTML = `20`;
+temperatureElement.innerHTML = celsius;
+celsiusLink.classList.add("active");
+fahrenheitLink.classList.remove("active");
 }
 
 function showPosition(position) {
@@ -72,11 +77,13 @@ event.preventDefault();
 navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", changeFahrenheit); 
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", changeFahrenheit); 
 
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", changeCelsius); 
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", changeCelsius); 
+
+let celsius = null;
 
 searchCity("Valencia");
 
