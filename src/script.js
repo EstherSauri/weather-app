@@ -39,6 +39,7 @@ function showTemperature (response) {
   celsius = Math.round(response.data.main.temp)
   document.querySelector("#temperature").innerHTML = celsius;
   document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#description").innerHTML = response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#realFeel").innerHTML = Math.round(response.data.main.feels_like);

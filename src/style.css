@@ -55,6 +55,18 @@ h2 {
   color: #737373;
   font-size: 20px;
   font-weight: 200;
+  line-height: 30px;
+}
+
+.description {
+  color: #737373;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 25px;
+}
+
+.description:first-letter {
+  text-transform: capitalize;
 }
 p {
   color: #737373;
