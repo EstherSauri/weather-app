@@ -35,6 +35,26 @@ let dayTime = document.querySelector("#dayTime");
 dayTime.innerHTML = `${currentDay} | ${currentHour}:${currentMinutes}`;
 
 function showTemperature (response) {
+  let weatherIcons = {
+    "01d": "images/sun.png",
+    "01n": "images/moon.svg",
+    "02d": "images/fewclouds.svg",
+    "02n": "images/fewcloudsnight.svg",
+    "03d": "images/clouds.svg",
+    "03n": "images/clouds.svg",
+    "04d": "images/darkclouds.svg",
+    "04n": "images/darkclouds.svg",
+    "09d": "images/rain.svg",
+    "09n": "images/rain.svg",
+    "10d": "images/rainday.svg",
+    "10n": "images/rainnight.svg",
+    "11d": "images/storm.svg",
+    "11n": "images/storm.svg",
+    "13d": "images/snowday.svg",
+    "13n": "images/snownight.svg",
+    "50d": "images/fog.svg",
+    "50n": "images/fog.svg",
+  };
 
   celsius = Math.round(response.data.main.temp)
   document.querySelector("#temperature").innerHTML = celsius;
@@ -45,6 +65,8 @@ function showTemperature (response) {
   document.querySelector("#realFeel").innerHTML = Math.round(response.data.main.feels_like);
   document.querySelector("#maximum").innerHTML = Math.round(response.data.main.temp_max);
   document.querySelector("#minimum").innerHTML = Math.round(response.data.main.temp_min);
+  document.querySelector("#weatherIcon").setAttribute("src", weatherIcons[response.data.weather[0].icon]);
+  document.querySelector("#weatherIcon").setAttribute("alt", response.data.weather[0].description);
 }
 
 function displayForecast(response) {
@@ -54,18 +76,37 @@ function displayForecast(response) {
 
   for (let index = 0; index < 5; index++) {
     forecast = response.data.list[index];
+    let weatherIcons = {
+    "01d": "images/sun.png",
+    "01n": "images/moon.svg",
+    "02d": "images/fewclouds.svg",
+    "02n": "images/fewcloudsnight.svg",
+    "03d": "images/clouds.svg",
+    "03n": "images/clouds.svg",
+    "04d": "images/darkclouds.svg",
+    "04n": "images/darkclouds.svg",
+    "09d": "images/rain.svg",
+    "09n": "images/rain.svg",
+    "10d": "images/rainday.svg",
+    "10n": "images/rainnight.svg",
+    "11d": "images/storm.svg",
+    "11n": "images/storm.svg",
+    "13d": "images/snowday.svg",
+    "13n": "images/snownight.svg",
+    "50d": "images/fog.svg",
+    "50n": "images/fog.svg",
+  };
     forecastElement.innerHTML += `
     <div class="col-sm">
                 <div class="card">
                     <div class="card-body week">
                         <strong>${formatHours(forecast.dt * 1000)}</strong>
                         <br />
-                        <img src="images/sun.png" alt="sunIcon">
+                        <img src="${weatherIcons[forecast.weather[0].icon]}" alt="sunIcon">
                         <br />
                         <strong>
                         ${Math.round(forecast.main.temp_max)}°
-                        </strong> 
-                        <br />
+                        </strong> |
                         ${Math.round(forecast.main.temp_min)}°
                     </div>
                 </div>
