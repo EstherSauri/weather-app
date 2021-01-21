@@ -105,9 +105,7 @@ function displayForecast(response) {
                         <img src="${weatherIcons[forecast.weather[0].icon]}" alt="sunIcon">
                         <br />
                         <strong>
-                        ${Math.round(forecast.main.temp_max)}°
-                        </strong> |
-                        ${Math.round(forecast.main.temp_min)}°
+                        ${Math.round(forecast.main.temp)}°C
                     </div>
                 </div>
                 `;}
